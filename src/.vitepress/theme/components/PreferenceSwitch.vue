@@ -55,27 +55,25 @@ function useToggleFn(
       :aria-expanded="isOpen"
       @click="toggleOpen"
     >
-      <span>API Preference</span>
+      <span>API 风格偏好</span>
       <VTIconChevronDown class="vt-link-icon" :class="{ open: isOpen }" />
     </button>
     <div id="preference-switches" :hidden="!isOpen" :aria-hidden="!isOpen">
       <div class="switch-container">
-        <label
-          class="options-label"
-          @click="toggleCompositionAPI(false)"
-        >Options</label>
+        <label class="options-label" @click="toggleCompositionAPI(false)"
+          >选项式</label
+        >
         <VTSwitch
           class="api-switch"
           aria-label="Switch API"
           @click="toggleCompositionAPI()"
         />
-        <label
-          class="composition-label"
-          @click="toggleCompositionAPI(true)"
-        >Composition</label>
+        <label class="composition-label" @click="toggleCompositionAPI(true)"
+          >组合式</label
+        >
         <a
           class="switch-link"
-          title="About API preference"
+          title="About API 风格偏好"
           href="/guide/introduction.html#api-styles"
           @click="closeSideBar"
         >?</a>
