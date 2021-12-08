@@ -1,21 +1,21 @@
-# Reusing Logic with Composables
+# 利用组合复用逻辑 {#reusing-logic-with-composables}
 
-### Retaining Reactivity
+### 保持响应性 {#retaining-reactivity}
 
-When we want to use a few properties of the large reactive object, it could be tempting to use destructuring to get properties we want. However, the destructured property would lose the reactivity connection to the original object:
+当我们想要使用一个很大的响应式对象上的一小部分属性时，可能立即先想到的是使用解构。然而解构出的属性会丢失与原代理的响应性链接。
 
 ```js
 const state = reactive({
   count: 0
-  // ... with many other properties
+  // ... 许多其他属性
 })
 
-// `count` won't be reactive once destructured
-// as it's just a number now
+// `count` 一旦被解构就不再具有响应性
+// 因为此时他只是一个 number 类型的值
 const { count } = state
 ```
 
-You can create a ref from a property of a reactive object with [`toRef()`](/api/reactivity-utilities.html#toref):
+你可以使用 [`toRef()`](/api/reactivity-utilities.html#toref) 方法依靠响应式对象中的某个属性创建一个 ref：
 
 ```js
 import { toRef } from 'vue'
