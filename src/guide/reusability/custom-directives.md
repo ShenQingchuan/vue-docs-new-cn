@@ -1,33 +1,33 @@
-# Custom Directives
+# 自定义指令 {#custom-directives}
 
-## Intro
+## 介绍 {#intro}
 
-In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives. Note that in Vue, the primary form of code reuse and abstraction is components - however, there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+除了 Vue 内置的一系列指令（比如 `v-model` 或 `v-show`）之外，Vue 还允许你注册自定义的指令。虽然在 Vue 中，最基本的抽象和复用代码的方式是使用组件，但也有一些场景需要去访问底层 DOM 元素，此时自定义指令就非常有用了。我们举一个用来聚焦在某个 input 元素上的指令为例：
 
-<!-- <common-codepen-snippet title="Custom directives: basic example" slug="JjdxaJW" :preview="false" /> -->
+<!-- <common-codepen-snippet title="自定义指令基础实例" slug="JjdxaJW" :preview="false" /> -->
 
-When the page loads, that element gains focus (note: `autofocus` doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Also, you can click on the `Rerun` button and input will be focused.
+页面加载完成后，只要浏览页面时没有点击别处，input 元素会自动聚焦（请注意：`autofocus` attribute 在移动端 Safari 上不可用）。你也可以点击 `重试` 按钮，让 input 元素重新聚焦。
 
-Now let's build the directive that accomplishes this:
+现在让我们看看如何写一个指令来做到这件事情：
 
 ```js
 const app = Vue.createApp({})
-// Register a global custom directive called `v-focus`
+// 注册一个全局可用的自定义指令，名为 `v-focus`
 app.directive('focus', {
-  // When the bound element is mounted into the DOM...
+  // 当绑定的元素在 DOM 中挂载完成后...
   mounted(el) {
-    // Focus the element
+    // 聚焦该元素
     el.focus()
   }
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+如果你想要在组件局部注册指令，也可以在组件中使用 `directives` 选项：
 
 ```js
 directives: {
   focus: {
-    // directive definition
+    // 指令定义
     mounted(el) {
       el.focus()
     }
@@ -35,46 +35,46 @@ directives: {
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+接下来在模板中，你可以像这样在任意元素上使用 `v-focus` attribute：
 
 ```vue-html
 <input v-focus />
 ```
 
-## Hook Functions
+## 钩子函数 {#hook-functions}
 
-A directive definition object can provide several hook functions (all optional):
+一个指令的定义是一个提供几个钩子函数的对象（所有钩子函数都是可选的）：
 
-- `created`: called before the bound element's attributes or event listeners are applied. This is useful in cases where the directive needs to attach event listeners that must be called before normal `v-on` event listeners.
+- `created`：在绑定元素的 attribute 或事件监听器应用之前被调用。有时我们需要一些必须在一般的 ` v-on` 事件监听器之前调用的监听器，这种情况会很有用。
 
-- `beforeMount`: called when the directive is first bound to the element and before parent component is mounted.
+- `beforeMount`：在指令首次绑定到元素并在父组件挂载此元素之前调用。
 
-- `mounted`: called when the bound element's parent component is mounted.
+- `mounted`：在父组件挂载此元素完成后调用。
 
-- `beforeUpdate`: called before the containing component's VNode is updated
+- `beforeUpdate`：在包含此指令的组件的对应 VNode 更新之前调用
 
-:::tip Note
-We'll cover VNodes in more detail [later](/guide/advanced/render-function.html#the-virtual-dom-tree), when we discuss render functions.
+:::tip 注意
+我们会在 [之后] (/guide/advanced/render-function.html#the-virtual-dom-tree) 的章节中讨论到 VNode。
 :::
 
-- `updated`: called after the containing component's VNode **and the VNodes of its children** have updated.
+- `updated`：在包含此指令的组件的对应的 VNode 及其所有子 VNode 更新完成后调用
 
-- `beforeUnmount`: called before the bound element's parent component is unmounted
+- `beforeUnmount`：在父组件卸载此元素之前调用。
 
-- `unmounted`: called only once, when the directive is unbound from the element and the parent component is unmounted.
+- `unmounted`：指令从元素中解绑，父元素卸载该元素之后调用，仅会调用一次。
 
-You can check the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `prevVnode`) in [Custom Directive API](/api/application.html#app-directive)
+你可以在 [自定义指令 API](/api/application.html#app-directive) 查阅传给这些钩子函数的参数（比如：`el`，`binding`，`vnode` 和`prevVnode`）。
 
-### Dynamic Directive Arguments
+### 动态指令参数 {#dynamic-directive-arguments}
 
-Directive arguments can be dynamic. For example, in `v-mydirective:[argument]="value"`, the `argument` can be updated based on data properties in our component instance! This makes our custom directives flexible for use throughout our application.
+指令参数可以是动态的，举个例子，在 `v-mydirective:[argument]="value"` 中，`argument` 可以基于组件实例的数据属性而更新！这使得我们能更灵活地在应用中使用该自定义指令。
 
-Let's say you want to make a custom directive that allows you to pin elements to your page using fixed positioning. We could create a custom directive where the value updates the vertical positioning in pixels, like this:
+现在我们想做这样一个指令，让某个元素在页面中变为固定定位（`position: fixed`）。并且我们可以在指令中精确到像素地更新元素垂直方向上的位置，就像这样：
 
 ```vue-html
 <div id="dynamic-arguments-example" class="demo">
-  <p>Scroll down the page</p>
-  <p v-pin="200">Stick me 200px from the top of the page</p>
+  <p>向下滚动页面 ↓</p>
+  <p v-pin="200">我被挂在距离页面顶部 200px 的地方</p>
 </div>
 ```
 
@@ -84,7 +84,7 @@ const app = Vue.createApp({})
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'
-    // binding.value is the value we pass to directive - in this case, it's 200
+    // binding.value 就是传给该指令的值，在这个例子中就是 200
     el.style.top = binding.value + 'px'
   }
 })
@@ -92,12 +92,12 @@ app.directive('pin', {
 app.mount('#dynamic-arguments-example')
 ```
 
-This would pin the element 200px from the top of the page. But what happens if we run into a scenario when we need to pin the element from the left, instead of the top? Here's where a dynamic argument that can be updated per component instance comes in very handy:
+这将把元素钉在距离页面顶部 200px 的位置。但是，如果我们遇到需要从左侧而不是顶部固定元素的情况，该怎么办呢？我们可以创建一个动态参数，并基于它来更新组件：
 
 ```vue-html
 <div id="dynamicexample">
-  <h3>Scroll down inside this section ↓</h3>
-  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+  <h3>向下滚动页面 ↓</h3>
+  <p v-pin:[direction]="200">我被挂在距离页面左边 200px 的地方</p>
 </div>
 ```
 
@@ -105,7 +105,7 @@ This would pin the element 200px from the top of the page. But what happens if w
 const app = Vue.createApp({
   data() {
     return {
-      direction: 'right'
+      direction: 'left'
     }
   }
 })
@@ -113,7 +113,7 @@ const app = Vue.createApp({
 app.directive('pin', {
   mounted(el, binding) {
     el.style.position = 'fixed'
-    // binding.arg is an argument we pass to directive
+    // binding.arg 就是传给指令的参数
     const s = binding.arg || 'top'
     el.style[s] = binding.value + 'px'
   }
@@ -122,17 +122,17 @@ app.directive('pin', {
 app.mount('#dynamic-arguments-example')
 ```
 
-Result:
+得到的结果是这样：
 
 <!-- <common-codepen-snippet title="Custom directives: dynamic arguments" slug="YzXgGmv" :preview="false" /> -->
 
-Our custom directive is now flexible enough to support a few different use cases. To make it even more dynamic, we can also allow to modify a bound value. Let's create an additional property `pinPadding` and bind it to the `<input type="range">`
+现在我们的自定义指令已经足够灵活，能够支持一些不同的使用场景了。为了使其更具动态性，我们还可以使用动态的绑定值。让我们再创建一个数据属性 `pinPadding` 并将其绑定到  `<input type="range">`。（译者注：例子中的 `_i18n` 是一个假想的翻译函数，表示根据描述方向的英文单词翻译为中文）
 
 ```vue-html{4}
 <div id="dynamicexample">
-  <h2>Scroll down the page</h2>
+  <h2>向下滚动页面 ↓</h2>
   <input type="range" min="0" max="500" v-model="pinPadding">
-  <p v-pin:[direction]="pinPadding">Stick me {{ pinPadding + 'px' }} from the {{ direction || 'top' }} of the page</p>
+  <p v-pin:[direction]="pinPadding">我被挂载在距离页面 {{ _i18n(direction, 'zh-CN') || '上方' }} {{ pinPadding + 'px' }} 的地方</p>
 </div>
 ```
 
@@ -147,7 +147,7 @@ const app = Vue.createApp({
 })
 ```
 
-Now let's extend our directive logic to recalculate the distance to pin on component update:
+现在让我们扩展该自定义指令的逻辑，重新计算组件更新时的固定距离:
 
 ```js{7-10}
 app.directive('pin', {
@@ -163,13 +163,13 @@ app.directive('pin', {
 })
 ```
 
-Result:
+得到的结果是这样：
 
 <!-- <common-codepen-snippet title="Custom directives: dynamic arguments + dynamic binding" slug="rNOaZpj" :preview="false" /> -->
 
-## Function Shorthand
+## 简化形式 {#function-shorthand}
 
-In previous example, you may want the same behavior on `mounted` and `updated`, but don't care about the other hooks. You can do it by passing the callback to directive:
+在之前的例子中，你可能只想要 `mounted` 和 `updated` 的行为，而并不关心其他钩子。那么你可以只给指令传一个下面这样的函数：
 
 ```js
 app.directive('pin', (el, binding) => {
@@ -179,24 +179,24 @@ app.directive('pin', (el, binding) => {
 })
 ```
 
-## Object Literals
+## 对象字面量 {#object-literals}
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。请记住，指令也可以接收任何合法的 JavaScript 表达式。
 
 ```vue-html
-<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+<div v-demo="{ color: '白色', text: '你好!' }"></div>
 ```
 
 ```js
 app.directive('demo', (el, binding) => {
-  console.log(binding.value.color) // => "white"
-  console.log(binding.value.text) // => "hello!"
+  console.log(binding.value.color) // => "白色"
+  console.log(binding.value.text) // => "你好!"
 })
 ```
 
-## Usage on Components
+## 在组件上使用 {#usage-on-components}
 
-When used on components, custom directive will always apply to component's root node, similarly to [non-prop attributes](/guide/components/attrs.html).
+当在组件上使用自定义指令时，它会始终应用于组件的根节点，和 [透传 attributes](/guide/components/attrs.html) 类似。
 
 ```vue-html
 <my-component v-demo="test"></my-component>
@@ -205,13 +205,13 @@ When used on components, custom directive will always apply to component's root 
 ```js
 app.component('my-component', {
   template: `
-    <div> // v-demo directive will be applied here
+    <div> // v-demo 指令会应用在这里
       <span>My component content</span>
     </div>
   `
 })
 ```
 
-Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
+而和 attribute 不同的是，指令不能通过类似 `v-bind="$attrs"` 的方式传递给一个别的元素。
 
-Note that components can potentially have more than one root nodes. When applied to a multi-root component, directive will be ignored and the warning will be thrown.
+如果组件可能含有多个根节点，指令不会起效、被忽略，还会抛出一个警告。
