@@ -230,7 +230,7 @@ declare module 'vue' {
 
 我们可以将这些类型扩充放在一个 `.ts` 文件或一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，你都需要在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `type` 属性中被列出。
 
-In order to take advantage of module augmentation, you will need to ensure the augmentation is placed in a [TypeScript module](https://www.typescriptlang.org/docs/handbook/modules.html). That is to say, the file needs to contain at least one top-level `import` or `export`, even if it is just `export {}`. If the augmentation is placed outside of a module, it will overwrite the original types rather than augmenting them!
+为了充分利用模块扩充的优势，你需要确保这些扩充都被放置在一个 [TypeScript 模块](https://www.typescriptlang.org/docs/handbook/modules.html)中。这也就是说这个文件至少包含一个顶层 `import` 或者 `export`，哪怕它只是一个 `export {}`。如果扩展被放置在模块之外，它将覆盖原来的类型而不是扩充它们！
 
 ## 扩充自定义选项 {#augmenting-custom-options}
 
