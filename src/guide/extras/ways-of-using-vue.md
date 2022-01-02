@@ -36,7 +36,7 @@ SPA 一般都依赖后端来暴露 API 端点，但你也可以将 Vue 和如 [I
 
 Vue 为服务端将一个 Vue 应用程序渲染成 HTML 字符串提供了第一优先级支持的 API。这使得可以从服务器得到渲染好的 HTML，使得用户在 JavaScript 还在下载的过程中也能立即看到页面内容。Vue 之后会在客户端侧对应用进行 “水化（hydrate）” 使其重获可交互性。这被称为 [服务端渲染（SSR）](/guide/scaling-up/ssr)，它极大地改善了 Web 应用在重要的核心指标上的表现，如 [最大内容绘制（LCP）](https://web.dev/lcp/)。
 
-也有一些针对此类场景、基于 Vue 构建的框架，比如 [NuxtJS](https://v3.nuxtjs.org/)，使你可以使用 Vue 和 JavaScript 开发一个全栈应用。
+也有一些针对此类场景、基于 Vue 构建的高阶框架，比如 [NuxtJS](https://v3.nuxtjs.org/)，使你可以使用 Vue 和 JavaScript 开发一个全栈应用。
 
 ## JAMStack / SSG {#jamstack-ssg}
 
