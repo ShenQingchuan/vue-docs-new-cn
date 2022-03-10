@@ -4,8 +4,6 @@ aside: deep
 
 # 服务端渲染（SSR） {#server-side-rendering-ssr}
 
-Vue 的服务端渲染 API 都被暴露在 `vue/server-renderer` 之下。
-
 ## 总览 {#overview}
 
 ### 什么是 SSR？ {#what-is-ssr}
@@ -229,3 +227,5 @@ export default {
 :::tip
 目前，如果没有为自定义指令找到服务器端转换，SSR 编译器将抛出错误。此行为将在未来调整为警告。
 :::
+
+我改动还移动了这里，Vue 的服务端渲染 API 都被暴露在 `vue/server-renderer` 之下。
