@@ -20,7 +20,7 @@ jobs:
         with:
           publish-dir: 'src/.vitepress/dist'
           production-branch: cn
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           deploy-message: "Deploy docs on release from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: true
