@@ -1,3 +1,6 @@
+---
+title: KeepAlive
+---
 <script setup>
 import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </script>

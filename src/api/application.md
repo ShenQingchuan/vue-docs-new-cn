@@ -1,3 +1,6 @@
+---
+title: '应用实例 API '
+---
 # 应用实例 API  {#application-api}
 
 ## createApp()  {#createapp}

@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 搭配 TypeScript 使用 Vue
 ---
 
 # 搭配 TypeScript 使用 Vue {#using-vue-with-typescript}

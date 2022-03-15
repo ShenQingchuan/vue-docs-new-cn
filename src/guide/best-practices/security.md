@@ -1,3 +1,6 @@
+---
+title: 安全
+---
 # 安全 {#security}
 
 ## 报告漏洞 {#reporting-vulnerabilities}

@@ -1,3 +1,6 @@
+---
+title: 'Vue 与 Web Components '
+---
 # Vue 与 Web Components  {#vue-and-web-components}
 
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 是一组 web 原生 API 的总称，允许开发者创建可重用的定制元素。

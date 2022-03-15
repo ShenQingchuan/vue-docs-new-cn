@@ -1,3 +1,6 @@
+---
+title: 行为准则
+---
 # 行为准则 {#code-of-conduct}
 
 ## 我们的承诺 {#our-pledge}

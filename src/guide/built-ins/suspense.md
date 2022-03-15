@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: Suspense
 ---
 
 # Suspense {#suspense}

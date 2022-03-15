@@ -1,3 +1,6 @@
+---
+title: TypeScript 与组合式 API
+---
 # TypeScript 与组合式 API {#typescript-with-composition-api}
 
 > 这一章假设你已经阅读过了这篇 [搭配 TypeScript 使用 Vue](./overview) 的文档。

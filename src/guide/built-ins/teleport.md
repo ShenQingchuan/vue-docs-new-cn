@@ -1,3 +1,6 @@
+---
+title: Teleport · 传送门
+---
 # Teleport · 传送门 {#teleport}
 
 `<Teleport>` 是一个内置组件，使我们可以将一个组件的一部分模板 “传送” 到该组件的 DOM 层次结构之外的 DOM 节点中。

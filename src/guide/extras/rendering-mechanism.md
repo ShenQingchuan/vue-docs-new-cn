@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 渲染机制
 ---
 
 # 渲染机制 {#rendering-mechanism}

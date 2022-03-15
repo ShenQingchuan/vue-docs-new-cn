@@ -1,3 +1,6 @@
+---
+title: 动画技巧
+---
 <script setup>
 import ElasticHeader from './demos/ElasticHeader.vue'
 import NotActivated from './demos/NotActivated.vue'

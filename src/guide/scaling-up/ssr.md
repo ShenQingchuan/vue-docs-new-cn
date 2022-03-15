@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 服务端渲染（SSR）
 ---
 
 # 服务端渲染（SSR） {#server-side-rendering-ssr}

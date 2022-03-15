@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: Transition · 过渡
 ---
 
 <script setup>
