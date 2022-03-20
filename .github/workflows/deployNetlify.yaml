@@ -35,7 +35,7 @@ jobs:
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: 'src/.vitepress/dist'
-          production-branch: cn
+          # production-branch: cn
           production-deploy: false
           github-token: ${{ secrets.VITE_GITHUB_TOKEN }}
           deploy-message: "Deploy docs by event: ${{ github.event_name }} from GitHub Actions"
