@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - cn
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -34,8 +36,9 @@ jobs:
         with:
           publish-dir: 'src/.vitepress/dist'
           production-branch: cn
-          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          deploy-message: "Deploy docs on release from GitHub Actions"
+          production-deploy: false
+          github-token: ${{ secrets.VITE_GITHUB_TOKEN }}
+          deploy-message: "Deploy docs by event: ${{ github.event_name }} from GitHub Actions"
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
