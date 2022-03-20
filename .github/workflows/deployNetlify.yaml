@@ -2,8 +2,8 @@ name: Publish docs on release
 
 on:
   push:
-    branches:
-      - cn
+    paths:
+      - 'docs/**'
   release:
     types: [published]
 
